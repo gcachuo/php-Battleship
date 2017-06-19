@@ -33,10 +33,14 @@ class index
 
     function callView($view)
     {
-        $controller=$this->_controller;
+        $controller = $this->_controller;
         ob_start();
         require_once "view/$view.phtml";
-        $View = ob_get_clean();
+        $body = ob_get_contents();
+        ob_end_clean();
+        require_once "view/template.phtml";
+        $View = ob_get_contents();
+        ob_end_clean();
         return $View;
     }
 }
