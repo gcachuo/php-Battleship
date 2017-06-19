@@ -19,11 +19,20 @@ class index
             if (empty($_GET)) {
                 header("Location: /?m=login");
                 exit;
+            } elseif (isset($_GET['ajax'])) {
+                $_POST = array_merge($_POST, $_POST['post']);
+                unset($_POST['post']);
+                $name = $_GET['ajax'];
+                $this->_controller = $this->callController($name);
+                $return = $this->_controller->{$_POST['fn']}();
+                $return = array_merge($return ?: array(), $_POST);
+                print json_encode($return);
+            } else {
+                $name = $_GET['m'];
+                $this->_controller = $this->callController($name);
+                $this->_view = $this->callView($name);
+                print $this->_view;
             }
-            $name = $_GET['m'];
-            $this->_controller = $this->callController($name);
-            $this->_view = $this->callView($name);
-            print $this->_view;
         } catch (Exception $ex) {
             print $ex->getMessage();
         }
