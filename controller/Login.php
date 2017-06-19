@@ -11,10 +11,7 @@ namespace controller;
 
 class Login
 {
-    public $_nombre;
-
     function __construct()
     {
-        $this->_nombre = "memo";
     }
 }

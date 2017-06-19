@@ -1,0 +1,13 @@
+form {
+    height: 100vh;
+}
+
+.absolute-align {
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 5vw;
+    right: 5vw;
+    position: fixed;
+    height: inherit;
+}
